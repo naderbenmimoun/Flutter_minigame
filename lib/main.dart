@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
   runApp(
@@ -6,23 +7,36 @@ void main() {
       home: Scaffold(
         backgroundColor: Colors.indigo,
         appBar: AppBar(
-          title: Text('Nader mini game'),
+          title: Text('Nader Mini Game'),
           backgroundColor: Colors.indigo[800],
         ),
-        body: imagepage(),
+        body: ImagePage(),
       ),
     ),
   );
 }
 
-class imagepage extends StatelessWidget {
+class ImagePage extends StatefulWidget {
+  @override
+  _ImagePageState createState() => _ImagePageState();
+}
+
+class _ImagePageState extends State<ImagePage> {
+  int leftImageNumber = 1;
+  int rightImageNumber = 2;
+
+  void changeImage() {
+    leftImageNumber = Random().nextInt(8) + 1; // generates 1–8
+    rightImageNumber = Random().nextInt(8) + 1; // generates 1–8
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(
-          'Try again',
+          leftImageNumber == rightImageNumber ? 'Great Job!' : 'Try again',
           style: TextStyle(fontSize: 42.0, color: Colors.white),
         ),
         Padding(
@@ -32,17 +46,21 @@ class imagepage extends StatelessWidget {
               Expanded(
                 child: TextButton(
                   onPressed: () {
-                    // add your action here
+                    setState(() {
+                      changeImage();
+                    });
                   },
-                  child: Image.asset('images/image-1.png'),
+                  child: Image.asset('images/image-$leftImageNumber.png'),
                 ),
               ),
               Expanded(
                 child: TextButton(
                   onPressed: () {
-                    // add your action here
+                    setState(() {
+                      changeImage();
+                    });
                   },
-                  child: Image.asset('images/image-1.png'),
+                  child: Image.asset('images/image-$rightImageNumber.png'),
                 ),
               ),
             ],
