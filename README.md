@@ -6,10 +6,12 @@ This project is mainly aimed at exploring Flutter development basics while creat
 ---
 
 ## 🚀 Features
-
+- Random image generator with Flutter’s `Random` class
 - Simple and intuitive user interface  
 - Uses **custom images** (stored in the `images/` folder)  
-- Interactive gameplay with **buttons**  
+- Interactive gameplay with **buttons**
+- Fun feedback when images match  
+ 
 
 
 ---
